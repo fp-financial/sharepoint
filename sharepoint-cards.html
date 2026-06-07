@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SharePoint Card Grid</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f3f2f1;
+    padding: 24px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    max-width: 1200px;
+  }
+
+  .card {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 4/3;
+    text-decoration: none;
+    display: block;
+  }
+
+  /* Gradient backgrounds — customize per card */
+  .card-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--card-bg);
+  }
+
+  /* Icon area (top portion) */
+  .card-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  .card-icon svg {
+    width: 56px;
+    height: 56px;
+    fill: rgba(255,255,255,0.9);
+  }
+
+  /* Title bar at bottom — always visible */
+  .card-title-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.55);
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 12px;
+    z-index: 2;
+    letter-spacing: 0.01em;
+  }
+
+  /* Overlay panel — slides up on hover */
+  .card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.72);
+    color: white;
+    padding: 14px 14px 12px;
+    z-index: 3;
+    transform: translateY(100%);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .card:hover .card-overlay,
+  .card:focus .card-overlay {
+    transform: translateY(0);
+  }
+
+  .card-overlay-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  .card-overlay-desc {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.45;
+  }
+
+  .card-overlay-link {
+    font-size: 11px;
+    color: rgba(255,255,255,0.65);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid">
+
+  <!-- CARD 1: FPF Culture IQ -->
+  <a class="card" href="https://YOUR-LINK-HERE.com" target="_blank">
+    <div class="card-bg" style="--card-bg: linear-gradient(135deg, #00b4a0 0%, #007a6e 100%);"></div>
+    <div class="card-icon">
+      <!-- Bookmark icon -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 3h14a1 1 0 0 1 1 1v16.5l-8-4-8 4V4a1 1 0 0 1 1-1z"/>
+      </svg>
+    </div>
+    <div class="card-title-bar">FPF Culture IQ</div>
+    <div class="card-overlay">
+      <div class="card-overlay-title">FPF Culture IQ</div>
+      <div class="card-overlay-desc">Access culture insights and organizational intelligence tools.</div>
+      <div class="card-overlay-link">↗ Open link</div>
+    </div>
+  </a>
+
+  <!-- CARD 2: PDF Form Filler -->
+  <a class="card" href="https://YOUR-LINK-HERE.com" target="_blank">
+    <div class="card-bg" style="--card-bg: linear-gradient(135deg, #7b5ea7 0%, #4a3880 100%);"></div>
+    <div class="card-icon">
+      <!-- PDF icon -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8.5 15.5h1.8c.9 0 1.7-.8 1.7-1.7 0-.9-.8-1.7-1.7-1.7H8v5.4h.5v-2zm0-2.9h1.3c.6 0 1.2.5 1.2 1.2s-.5 1.2-1.2 1.2H8.5v-2.4zm4.8-.5h1.4c1.2 0 2.1 1 2.1 2.1v1.2c0 1.2-1 2.1-2.1 2.1h-1.4v-5.4zm.5.5v4.4h.9c.9 0 1.6-.7 1.6-1.6v-1.2c0-.9-.7-1.6-1.6-1.6h-.9zm-8 .5h1.4v.5H5.8v1.4h1.2v.5H5.8v2h-.5v-4.4h1.5z"/>
+      </svg>
+    </div>
+    <div class="card-title-bar">PDF Form Filler</div>
+    <div class="card-overlay">
+      <div class="card-overlay-title">PDF Form Filler</div>
+      <div class="card-overlay-desc">Fill and submit PDF forms quickly and easily.</div>
+      <div class="card-overlay-link">↗ Open link</div>
+    </div>
+  </a>
+
+  <!-- CARD 3: AI Strategy -->
+  <a class="card" href="https://YOUR-LINK-HERE.com" target="_blank">
+    <div class="card-bg" style="--card-bg: linear-gradient(135deg, #9b59b6 0%, #6c3483 100%);"></div>
+    <div class="card-icon">
+      <!-- Diamond/strategy icon -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 9l10 13L22 9 12 2zm0 2.5l7.5 5.5-7.5 9.7L4.5 10 12 4.5z"/>
+      </svg>
+    </div>
+    <div class="card-title-bar">AI Strategy</div>
+    <div class="card-overlay">
+      <div class="card-overlay-title">AI Strategy</div>
+      <div class="card-overlay-desc">Explore our organizational AI strategy and roadmap.</div>
+      <div class="card-overlay-link">↗ Open link</div>
+    </div>
+  </a>
+
+  <!-- CARD 4: Projects -->
+  <a class="card" href="https://YOUR-LINK-HERE.com" target="_blank">
+    <div class="card-bg" style="--card-bg: linear-gradient(135deg, #e88a7e 0%, #c0392b 100%);"></div>
+    <div class="card-icon">
+      <!-- Laptop icon -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="4" width="20" height="13" rx="2" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.5"/>
+        <path d="M0 19h24" stroke="rgba(255,255,255,0.9)" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="card-title-bar">Projects</div>
+    <div class="card-overlay">
+      <div class="card-overlay-title">Projects</div>
+      <div class="card-overlay-desc">View and manage active projects across the organization.</div>
+      <div class="card-overlay-link">↗ Open link</div>
+    </div>
+  </a>
+
+  <!-- CARD 5: Community -->
+  <a class="card" href="https://YOUR-LINK-HERE.com" target="_blank">
+    <div class="card-bg" style="--card-bg: linear-gradient(135deg, #5dade2 0%, #2e86c1 100%);"></div>
+    <div class="card-icon">
+      <!-- Community/people icon -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="9" cy="7" r="3" fill="rgba(255,255,255,0.9)"/>
+        <circle cx="15" cy="7" r="3" fill="rgba(255,255,255,0.9)"/>
+        <path d="M3 19c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="rgba(255,255,255,0.9)"/>
+        <path d="M15 13c1.3 0 2.5.4 3.5 1" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M18 17c.6.9 1 2 1 3" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="card-title-bar">Community</div>
+    <div class="card-overlay">
+      <div class="card-overlay-title">Community</div>
+      <div class="card-overlay-desc">Connect with colleagues and join community discussions.</div>
+      <div class="card-overlay-link">↗ Open link</div>
+    </div>
+  </a>
+
+</div>
+
+</body>
+</html>
